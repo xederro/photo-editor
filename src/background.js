@@ -85,6 +85,21 @@ ipcMain.on("selectPhoto", (event, args) => {
   });
 });
 
+ipcMain.on("saveFile", (event, args) => {
+  dialog.showSaveDialog({
+    title: 'Save image',
+    defaultPath: 'image.jpg'
+  }).then((path) => {
+    const base64Data = args.replace(/^data:image\/png;base64,/, "");
+    if (!path.canceled){
+      fs.writeFile(path.filePath, base64Data, 'base64', function (err) {
+        if (err !== null) console.log(err);
+      });
+    }
+  });
+
+})
+
 function returnPaths(files) {
   win.webContents.send("getPaths", files.filePaths[0]);
 }

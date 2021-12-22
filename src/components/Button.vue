@@ -13,7 +13,7 @@ export default {
     color: String,
     outline: String,
     disabled: Boolean,
-    addClass: Boolean,
+    addClass: String,
   },
 
   methods: {

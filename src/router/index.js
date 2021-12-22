@@ -7,11 +7,6 @@ const routes = [
     component: () => import('../views/Home.vue')
   },
   {
-    path: '/Photo',
-    name: 'Photo',
-    component: () => import('../views/Photo.vue')
-  },
-  {
     path: '/Edit/:file',
     name: 'Edit',
     component: () => import('../views/Edit.vue'),

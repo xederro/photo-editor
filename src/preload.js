@@ -6,7 +6,7 @@ contextBridge.exposeInMainWorld(
     "api", {
         send: (channel, data) => {
             // whitelist channels
-            let validChannels = ["selectPhoto", "selectVideo"];
+            let validChannels = ["selectPhoto", "selectVideo", "saveFile"];
             if (validChannels.includes(channel)) {
                 ipcRenderer.send(channel, data);
             }
@@ -14,11 +14,8 @@ contextBridge.exposeInMainWorld(
         receive: (channel, func) => {
             let validChannels = ["getPaths"];
             if (validChannels.includes(channel)) {
-                // Deliberately strip event as it includes `sender`
                 ipcRenderer.on(channel, (event, ...args) => func(...args));
             }
         }
     }
 );
-
-window.ipcRenderer = ipcRenderer;
