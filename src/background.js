@@ -17,8 +17,9 @@ protocol.registerSchemesAsPrivileged([
 async function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1920,
+    height: 1080,
+    icon: path.join(__dirname, 'assets/favicon.ico'),
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: false,
@@ -26,6 +27,8 @@ async function createWindow() {
       preload: path.join(__dirname, 'preload.js'),
     }
   })
+
+  win.setMenuBarVisibility(false)
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
